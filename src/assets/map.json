@@ -1,0 +1,38 @@
+[
+  {
+    "input": ["i"],
+    "output": "i (me)"
+  },
+  {
+    "input": ["stole"],
+    "output": "steal"
+  },
+  {
+    "input": ["observance"],
+    "output": "observe"
+  },
+  {
+    "input": ["ate"],
+    "output": "eat"
+  },
+  {
+    "input": ["ran"],
+    "output": "run"
+  },
+  {
+    "input": ["came"],
+    "output": "come"
+  },
+  {
+    "input": ["did"],
+    "output": "do"
+  },
+  {
+    "input": ["knew"],
+    "output": "know"
+  },
+  {
+    "input": ["said"],
+    "output": "say"
+  }
+]
