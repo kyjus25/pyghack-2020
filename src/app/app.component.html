@@ -1,3 +1,13 @@
 <h1>Pyghack 2020</h1>
 <textarea [placeholder]="'Type your sentence'" [(ngModel)]="sentence"></textarea><br>
 <button (click)="submit()">Sign for me</button>
+
+<video>
+  <source src="https://www.handspeak.com/word/a/a-abc.mp4" type="video/mp4">
+</video>
+
+<ng-container *ngFor="let video of words['a']">
+  {{video.src}}<br>
+</ng-container>
+
+
