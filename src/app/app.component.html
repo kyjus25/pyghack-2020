@@ -24,7 +24,7 @@
 >
   <div ngxSlickItem *ngFor="let match of matches; trackBy: _trackBy" class="slide">
     <div>
-      {{ match.text }}
+      {{ match.localText }}
       <video>
         <source src="{{ match.localSrc }}" type="video/mp4" />
       </video>
