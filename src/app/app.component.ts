@@ -1,23 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import * as wordsImport from  '../assets/data.json';
 import * as blacklistImport from  '../assets/blacklist.json';
 import * as mapImport from  '../assets/map.json';
 import nlp from 'compromise';
+import {CarouselComponent} from './carousel/carousel.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   public sentence: string;
   public words: any = (wordsImport as any).default;
   public blacklist: any = (blacklistImport as any).default;
   public map: any = (mapImport as any).default;
 
   public activeIndex = 0;
-  public matches;
+  public matches = [];
 
+  @ViewChild(CarouselComponent, { static: true }) carousel;
+
+  public ngAfterViewInit() {
+    console.log(this);
+  }
   public submit(): void {
     this.activeIndex = 0;
     this.matches = [];
@@ -59,15 +65,17 @@ export class AppComponent {
         }
       }
     });
+    const videos: any = document.querySelectorAll('.carousel');
+    console.log(videos, this.matches);
+    this.playVideo();
   }
 
-  private playVideo() {
-    // const video = document.getElementById('video');
-    // const source = document.createElement('source');
-    // video.pause();
-    // source.setAttribute('src', this.activeVideo);
-    // video.appendChild(source);
-    // video.load();
-    // video.play();
+  private playVideo(): void {
+    const videos: any = document.getElementsByClassName('video');
+    if (videos) {
+      // videos[this.activeIndex].addEventListener('ended', () => this.activeIndex = (this.activeIndex + 1) % this.matches.length);
+      console.log(videos, this.matches);
+      videos[this.activeIndex].play();
+    }
   }
 }

@@ -13,7 +13,16 @@
   </div>
 </div>
 
-<!--<ng-container *ngFor="let video of words['a']">-->
+<pm-carousel #carousel class="carousel" *ngIf="matches.length > 0" [index]="activeIndex">
+  <ng-container *ngFor="let match of matches">
+    <ng-template pavTemplate="{{match.text}}">
+      <video class="video">
+        <source src="{{match.localSrc}}" type="video/mp4">
+      </video>
+    </ng-template>
+  </ng-container>
+  
+</pm-carousel><!--<ng-container *ngFor="let video of words['a']">-->
 <!--  {{video.src}}<br>-->
 <!--</ng-container>-->
 
