@@ -48,12 +48,12 @@ export class AppComponent {
   }
 
   private playVideo() {
-    const video = document.getElementById('video');
-    const source = document.createElement('source');
-    video.pause();
-    source.setAttribute('src', this.activeVideo);
-    video.appendChild(source);
-    video.load();
-    video.play();
+    // const video = document.getElementById('video');
+    // const source = document.createElement('source');
+    // video.pause();
+    // source.setAttribute('src', this.activeVideo);
+    // video.appendChild(source);
+    // video.load();
+    // video.play();
   }
 }

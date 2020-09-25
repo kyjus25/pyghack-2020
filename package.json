@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "generate": "node scripts/generate.js"
+    "generate": "node scripts/generate.js",
+    "download": "node scripts/download.js"
   },
   "private": true,
   "dependencies": {
