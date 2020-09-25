@@ -1,12 +1,8 @@
-declare var require: any;
 import { Component } from '@angular/core';
 import * as wordsImport from  '../assets/data.json';
 import * as blacklistImport from  '../assets/blacklist.json';
 import * as mapImport from  '../assets/map.json';
-import {first} from 'rxjs/operators';
-const verbutils = require('verbutils')();
 import nlp from 'compromise';
-
 
 @Component({
   selector: 'app-root',
