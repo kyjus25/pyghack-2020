@@ -1,6 +1,6 @@
 [
   {
-    "input": ["i"],
+    "input": ["i", "me", "my"],
     "output": "i (me)"
   },
   {

@@ -15,12 +15,16 @@ import nlp from 'compromise';
 })
 export class AppComponent {
   public sentence: string;
-  public activeVideo: string;
   public words: any = (wordsImport as any).default;
   public blacklist: any = (blacklistImport as any).default;
   public map: any = (mapImport as any).default;
 
+  public activeIndex = 0;
+  public matches;
+
   public submit(): void {
+    this.activeIndex = 0;
+    this.matches = [];
 
     const doc = nlp(this.sentence);
     doc.verbs().toInfinitive();
@@ -41,8 +45,11 @@ export class AppComponent {
 
         const match = this.words[firstLetter].find(i => i.text.toLowerCase() === word);
         console.log(word, firstLetter, match);
-        this.activeVideo = match.src;
-        this.playVideo();
+        if (match) {
+          console.log(match.src.split('/'));
+          match.src = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
+          this.matches.push(match);
+        }
       }
     });
   }
