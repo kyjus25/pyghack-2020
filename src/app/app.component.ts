@@ -1,10 +1,7 @@
-declare var require: any;
+import * as wordsImport from  '../assets/data.json';
+import * as blacklistImport from  '../assets/blacklist.json';
+import * as mapImport from  '../assets/map.json';
 import { Component, ViewChild } from '@angular/core';
-import * as wordsImport from '../assets/data.json';
-import * as blacklistImport from '../assets/blacklist.json';
-import * as mapImport from '../assets/map.json';
-import { first } from 'rxjs/operators';
-// const verbutils = require('verbutils')();
 import nlp from 'compromise';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
@@ -105,7 +102,19 @@ export class AppComponent {
             match.src.split('/')[4] +
             '/' +
             match.src.split('/')[5];
+          match.localText = match.text;
           this.matches.push(match);
+        } else {
+          // try to find best match
+          const bestMatch = this.words[firstLetter].filter(i => {
+            const removeParens = i.text.toLowerCase().replace(/\(.*\)/, '').trim().replace('()', '');
+            return removeParens === word;
+          });
+          if (bestMatch[0]) {
+            bestMatch[0].localSrc = '/assets/videos/' + bestMatch[0].src.split('/')[4] + '/' + bestMatch[0].src.split('/')[5];
+            bestMatch[0].localText = bestMatch[0].text + '*';
+            this.matches.push(bestMatch[0]);
+          }
         }
       }
     });

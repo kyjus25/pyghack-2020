@@ -1,5 +1,9 @@
 [
   {
+    "input": ["it"],
+    "output": "its"
+  },
+  {
     "input": ["i", "me", "my"],
     "output": "i (me)"
   },
