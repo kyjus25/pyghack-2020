@@ -1,20 +1,38 @@
 <h1>Pyghack 2020</h1>
-<textarea [placeholder]="'Type your sentence'" [(ngModel)]="sentence"></textarea><br>
+<textarea [placeholder]="'Type your sentence'" [(ngModel)]="sentence"></textarea
+><br />
 <button (click)="submit()">Sign for me</button>
-<br>
-
+<br />
 
 <div *ngFor="let match of matches" class="element">
-  {{match.text}}
+  {{ match.text }}
   <div class="wrapper">
     <video autoplay>
-      <source src="{{match.localSrc}}" type="video/mp4">
+      <source src="{{ match.localSrc }}" type="video/mp4" />
     </video>
   </div>
 </div>
 
-<!--<ng-container *ngFor="let video of words['a']">-->
-<!--  {{video.src}}<br>-->
-<!--</ng-container>-->
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+  (init)="slickInit($event)"
+  (breakpoint)="breakpoint($event)"
+  (afterChange)="afterChange($event)"
+  (beforeChange)="beforeChange($event)"
+>
+  <div ngxSlickItem *ngFor="let match of matches; trackBy: _trackBy" class="slide">
+    <div>
+      {{ match.text }}
+      <video>
+        <source src="{{ match.localSrc }}" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</ngx-slick-carousel>
 
-
+<!-- <button (click)="addSlide()">Add</button>
+<button (click)="removeSlide()">Remove</button>
+<button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+<button (click)="slickModal.unslick()">unslick</button> -->
