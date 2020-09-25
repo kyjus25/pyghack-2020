@@ -47,7 +47,7 @@ export class AppComponent {
         console.log(word, firstLetter, match);
         if (match) {
           console.log(match.src.split('/'));
-          match.src = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
+          match.localSrc = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
           this.matches.push(match);
         }
       }

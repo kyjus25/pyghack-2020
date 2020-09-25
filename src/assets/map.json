@@ -4,6 +4,14 @@
     "output": "i (me)"
   },
   {
+    "input": ["like"],
+    "output": "like (feeling)"
+  },
+  {
+    "input": ["order"],
+    "output": "order (request)"
+  },
+  {
     "input": ["stole"],
     "output": "steal"
   },
