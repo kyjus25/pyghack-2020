@@ -42,9 +42,20 @@ export class AppComponent {
         const match = this.words[firstLetter].find(i => i.text.toLowerCase() === word);
         console.log(word, firstLetter, match);
         if (match) {
-          console.log(match.src.split('/'));
           match.localSrc = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
+          match.localText = match.text;
           this.matches.push(match);
+        } else {
+          // try to find best match
+          const bestMatch = this.words[firstLetter].filter(i => {
+            const removeParens = i.text.toLowerCase().replace(/\(.*\)/, '').trim().replace('()', '');
+            return removeParens === word;
+          });
+          if (bestMatch[0]) {
+            bestMatch[0].localSrc = '/assets/videos/' + bestMatch[0].src.split('/')[4] + '/' + bestMatch[0].src.split('/')[5];
+            bestMatch[0].localText = bestMatch[0].text + '*';
+            this.matches.push(bestMatch[0]);
+          }
         }
       }
     });
