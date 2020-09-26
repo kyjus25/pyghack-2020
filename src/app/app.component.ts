@@ -36,7 +36,12 @@ export class AppComponent implements AfterViewInit {
 
     const doc = nlp(this.sentence);
     doc.verbs().toInfinitive();
-    const newSentence = doc.text().trim().replace('?', '').replace('.', '');
+    const newSentence = doc.text()
+                           .trim()
+                           .replace('?', '')
+                           .replace('.', '')
+                           .replace(':', '')
+                           .replace(';', '');
     if (!newSentence) return;
     const parts = newSentence.split(' ');
 
