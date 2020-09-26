@@ -1,29 +1,46 @@
-<h1>Pyghack 2020</h1>
-<textarea [placeholder]="'Type your sentence'" [(ngModel)]="sentence"></textarea><br>
-<button (click)="submit()">Sign for me</button>
-<br>
+<div class="flex">
+  <!-- Child divs -->
+  <div class="flex-left">
+    <h1 class="header"><span>TEXT</span>to<span>ASL</span></h1>
+    <h2 class="sub-header">PygHack 2020</h2>
+    <textarea
+      [placeholder]="'Translate me!'"
+      [(ngModel)]="sentence"
+      (keydown)="onKeyDown($event)"
+    ></textarea
+    >
+    <div id="try">
+      <span>?</span><b>Things to try</b><br>
+      <p>"The quick brown fox jumped over the lazy dog"</p>
+      <p>"The family went to the movie theater"</p>
+    </div>
+    <br />
+    <br />
+  </div>
 
-<!--<div *ngFor="let match of matches" class="element">-->
-<!--  {{match.localText}}-->
-<!--  <div class="wrapper">-->
-<!--    <video autoplay>-->
-<!--      <source src="{{match.localSrc}}" type="video/mp4">-->
-<!--    </video>-->
-<!--  </div>-->
-<!--</div>-->
+  <div class="controls">
+    <button (click)="submit()" class="control-button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" />
+      </svg>
+    </button>
+  </div>
 
-<pm-carousel #carousel class="carousel" [index]="activeIndex">
-  <ng-container *ngFor="let match of matches">
-    <ng-template pavTemplate="{{match.localText}}">
-      <video class="video" (ended)="playVideo(activeIndex + 1)">
-        <source src="{{match.localSrc}}" type="video/mp4">
-      </video>
-      <div class="text center">{{match.localText}}</div>
-    </ng-template>
-  </ng-container>
-
-</pm-carousel><!--<ng-container *ngFor="let video of words['a']">-->
-<!--  {{video.src}}<br>-->
-<!--</ng-container>-->
-
-
+  <div class="flex-right">
+    <pm-carousel #carousel class="carousel" [index]="activeIndex">
+      <ng-container *ngFor="let match of matches">
+        <ng-template pavTemplate="{{ match.localText }}">
+          <video class="video" (ended)="playVideo(activeIndex + 1)">
+            <source src="{{ match.localSrc }}" type="video/mp4" />
+          </video>
+          <div class="text center">{{ match.localText }}</div>
+        </ng-template>
+      </ng-container>
+    </pm-carousel>
+  </div>
+</div>

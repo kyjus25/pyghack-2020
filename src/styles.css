@@ -1,26 +1,297 @@
 /* You can add global styles to this file, and also import other style files */
-video {
-  width: 300px;
-  height: 400px;
+html,
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100%;
 }
-.element {
-  text-align: center;
-  display: inline-block;
-  margin-right: 20px;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 250px;
-  overflow: hidden;
+textarea {
+  display: block;
+  box-sizing: padding-box;
+  padding: 20px;
+  width: 90%;
+  height: 150px;
+  font-size: 1.25em;
+  margin: 50px auto 0 auto;
+  border-radius: 6px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  border: 0;
+  resize: none;
+  overflow-y: auto;
+}
+textarea:focus {
+  background: none repeat scroll 0 0 #ffffff;
+  outline-width: 0;
+}
+h1,
+h2 {
+  margin: 0;
 }
 .text {
   font-size: 40px;
   font-weight: bold;
-  margin-top: -40px;
+  margin-top: -20px;
+}
+.header {
+  font-size: 8vw;
+}
+.header span {
+  color: #34495e;
+  font-weight: bolder;
+}
+.sub-header {
+  font-weight: normal;
 }
 .center {
   text-align: center;
+}
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.flex > div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.flex-left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #6fa9c9;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: white;
+  height: auto;
+  /*box-shadow: inset 0 0 1px white;*/
+  padding: 4em 2em;
+  overflow: hidden;
+}
+.flex-right {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: center;
+  color: hsl(0, 0%, 14%);
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  height: auto;
+  padding: 4em 2em;
+}
+.controls {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal !important;
+  -webkit-box-direction: normal !important;
+  -webkit-flex-direction: row !important;
+  -ms-flex-direction: row !important;
+  flex-direction: row !important;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  width: 100vw;
+  margin-top: -25px;
+}
+.control-button {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border: 2px solid #3498db;
+  background-color: white;
+  margin-bottom: 2em;
+  color: #3498db;
+  padding: 0.5em 0.5em;
+  fill: #3498db;
+}
+.control-button:focus {
+  outline: none;
+}
+.carousel {
+  width: 100% !important;
+}
+.scene {
+  display: flex;
+  justify-content: center;
+  width: 85% !important;
+}
+video {
+  width: 80%;
+  height: 400px;
+}
+
+@media all and (min-width: 65em) {
+  .header {
+    font-size: 4em;
+  }
+  textarea {
+    width: 70%;
+    font-size: 2em;
+  }
+  .flex > div {
+    min-width: 50%;
+    width: 50%;
+  }
+  .flex {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    overflow: hidden;
+    height: 100vh;
+    /*This here in flex-parent for making only certain items scrollable */
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: overflow;
+  }
+  .flex-left {
+    padding: 2em;
+  }
+  .controls {
+    z-index: 1000;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -25px;
+    max-width: 50px;
+    /*FIXME get rid of importants*/
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: column !important;
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: transparent;
+  }
+  .control-button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    background-color: white;
+    margin-bottom: 2em;
+    color: #3498db;
+    padding: 0.5em 0.5em;
+    fill: #3498db;
+  }
+  .control-button:hover {
+    border: 2px solid white;
+    background-color: #3498db;
+    -webkit-transition: all 0.4s ease-out;
+    transition: all 0.4s ease-out;
+    color: white;
+    fill: white;
+  }
+  .control-button:active {
+    border: 2px solid white;
+    background-color: #3498db;
+    -webkit-transition: all 60ms ease;
+    transition: all 60ms ease;
+    -webkit-transform: scale(0.97);
+    transform: scale(0.97);
+    color: white;
+    fill: white;
+  }
+}
+#try {
+  width: 70%;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 6px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  margin-top: 50px;
+  padding: 20px;
+}
+#try span {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100%;
+  color: #34495e;
+  font-weight: bold;
+  margin-right: 10px;
+}
+#try p:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
