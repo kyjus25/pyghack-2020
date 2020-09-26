@@ -6,13 +6,14 @@
 // }
 
 .scene {
-  border: 1px solid #CCC;
+  // border: 1px solid #CCC;
   // margin: 40px 0;
   position: relative;
   // margin: 80px auto;
-  width: 100%;
-  height: 100%;
+  width: 500px;
+  height: 450px;
   perspective: 1000px;
+  margin: auto;
 }
 
 .carousel {
@@ -38,8 +39,9 @@
   color: black;
   text-align: center;
   transition: transform 1s, opacity 1s;
-  background: rgb(251, 242, 255);
-   
+  // background: rgb(251, 242, 255);
+  background-color: rgba(255,255,255,0.8);
+
 }
 .invisible-back {
   backface-visibility: hidden;

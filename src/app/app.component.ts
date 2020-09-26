@@ -33,6 +33,7 @@ export class AppComponent implements AfterViewInit {
     const newSentence = doc.text();
     const parts = newSentence.split(' ');
 
+    const tempMatches = [];
     parts.forEach(word => {
       word = word.toLowerCase();
       if (!this.blacklist.includes(word)) {
@@ -49,8 +50,8 @@ export class AppComponent implements AfterViewInit {
         console.log(word, firstLetter, match);
         if (match) {
           match.localSrc = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
-          match.localText = match.text;
-          this.matches.push(match);
+          match.localText = match.text.charAt(0).toUpperCase() + match.text.slice(1);
+          tempMatches.push(match);
         } else {
           // try to find best match
           const bestMatch = this.words[firstLetter].filter(i => {
@@ -59,23 +60,30 @@ export class AppComponent implements AfterViewInit {
           });
           if (bestMatch[0]) {
             bestMatch[0].localSrc = '/assets/videos/' + bestMatch[0].src.split('/')[4] + '/' + bestMatch[0].src.split('/')[5];
-            bestMatch[0].localText = bestMatch[0].text + '*';
-            this.matches.push(bestMatch[0]);
+            bestMatch[0].localText = bestMatch[0].text.charAt(0).toUpperCase() + bestMatch[0].text.slice(1) + '*';
+            tempMatches.push(bestMatch[0]);
           }
         }
       }
     });
+    this.matches = tempMatches;
     const videos: any = document.querySelectorAll('.carousel');
-    console.log(videos, this.matches);
-    this.playVideo();
+    window.setTimeout(() => {
+      this.carousel.onOrientation(true);
+      console.log(videos, this.matches);
+      this.playVideo(0);
+    }, 0);
   }
 
-  private playVideo(): void {
-    const videos: any = document.getElementsByClassName('video');
-    if (videos) {
-      // videos[this.activeIndex].addEventListener('ended', () => this.activeIndex = (this.activeIndex + 1) % this.matches.length);
-      console.log(videos, this.matches);
-      videos[this.activeIndex].play();
+  private playVideo(index): void {
+    if (index <= this.matches.length) {
+      this.activeIndex = index;
+      const videos: any = document.getElementsByClassName('video');
+      if (videos) {
+        // videos[this.activeIndex].addEventListener('ended', () => this.activeIndex = (this.activeIndex + 1) % this.matches.length);
+        console.log(videos, this.matches);
+        videos[index].play();
+      }
     }
   }
 }

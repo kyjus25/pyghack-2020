@@ -9,16 +9,16 @@ import {TemplateComponent} from '../template'
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent extends TemplateComponent implements OnInit, OnDestroy, AfterContentInit, AfterViewInit {
-  @ViewChild('carousel', {static: true}) carousel; 
+  @ViewChild('carousel', {static: true}) carousel;
   @Input() isHorizontal: boolean = true;
   @Input() set index(value){
     this.rotateCarousel(value);
   }
-  
+
   private theta: number = 360;
   private radius: number = 0;
   private rotateFn: string;
-  public debug: boolean = true;
+  public debug: boolean = false;
   public testCells: number[] = [];
   public _index: number = 0;
 
@@ -32,10 +32,10 @@ export class CarouselComponent extends TemplateComponent implements OnInit, OnDe
     this.onOrientation(this.isHorizontal);
   }
 
-  public rotateCarousel(index: number) {   
+  public rotateCarousel(index: number) {
     this._index = index;
     let angle = this.theta * this._index * -1;
-    this.carousel.nativeElement.style.transform = 'translateZ(' + -this.radius + 'px) ' + 
+    this.carousel.nativeElement.style.transform = 'translateZ(' + -this.radius + 'px) ' +
       this.rotateFn + '(' + angle + 'deg)';
   }
 
@@ -57,7 +57,7 @@ export class CarouselComponent extends TemplateComponent implements OnInit, OnDe
         cell.style.opacity = 0;
         cell.style.transform = 'none';
       }
-      
+
     }
     this.rotateCarousel(this._index);
   }

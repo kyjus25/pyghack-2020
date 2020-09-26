@@ -3,25 +3,25 @@
 <button (click)="submit()">Sign for me</button>
 <br>
 
+<!--<div *ngFor="let match of matches" class="element">-->
+<!--  {{match.localText}}-->
+<!--  <div class="wrapper">-->
+<!--    <video autoplay>-->
+<!--      <source src="{{match.localSrc}}" type="video/mp4">-->
+<!--    </video>-->
+<!--  </div>-->
+<!--</div>-->
 
-<div *ngFor="let match of matches" class="element">
-  {{match.localText}}
-  <div class="wrapper">
-    <video autoplay>
-      <source src="{{match.localSrc}}" type="video/mp4">
-    </video>
-  </div>
-</div>
-
-<pm-carousel #carousel class="carousel" *ngIf="matches.length > 0" [index]="activeIndex">
+<pm-carousel #carousel class="carousel" [index]="activeIndex">
   <ng-container *ngFor="let match of matches">
-    <ng-template pavTemplate="{{match.text}}">
-      <video class="video">
+    <ng-template pavTemplate="{{match.localText}}">
+      <video class="video" (ended)="playVideo(activeIndex + 1)">
         <source src="{{match.localSrc}}" type="video/mp4">
       </video>
+      <div class="text center">{{match.localText}}</div>
     </ng-template>
   </ng-container>
-  
+
 </pm-carousel><!--<ng-container *ngFor="let video of words['a']">-->
 <!--  {{video.src}}<br>-->
 <!--</ng-container>-->
