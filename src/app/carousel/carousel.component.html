@@ -1,0 +1,41 @@
+<!-- <ng-content></ng-content> -->
+<div class="scene">
+  <div #carousel class="carousel">
+    <ng-container *ngFor="let t of templates">
+      <div class="carousel__cell" [ngClass]="{'invisible-back': templates.length === 2}">
+        <ng-container *ngTemplateOutlet="t.templateRef"></ng-container>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="debug"> 
+      <ng-container *ngFor="let t of testCells">
+        <div class="carousel__cell" [ngClass]="{'invisible-back': testCells.length === 2}">
+          {{t+1}}
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div class="carousel-options" *ngIf="debug">
+  <p>
+    <label>
+      Cells {{cells.value}}
+      <input #cells class="cells-range" type="range" min="2" max="20" value="9" (change)="onCellsChange(cells.value)" (blur)="changeCarousel()"/>
+    </label>
+  </p>
+  <p>
+    <button class="previous-button" (click)="rotateCarousel(_index - 1)">Previous</button>
+    <button class="next-button" (click)="rotateCarousel(_index + 1)">Next</button>
+  </p>
+  <p>
+    Orientation:
+    <label>
+      <input type="radio" name="orientation" value="horizontal" checked (click)="onOrientation(true)" />
+      horizontal
+    </label>
+    <label>
+      <input type="radio" name="orientation" value="vertical" (click)="onOrientation(false)"/>
+      vertical
+    </label>
+  </p>
+</div>
