@@ -57,7 +57,6 @@ export class AppComponent implements AfterViewInit {
         console.log(word, firstLetter, match);
         if (match) {
           match.localSrc = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
-          match.localSrc = 'https://cdn.videvo.net/videvo_files/video/free/2012-09/small_watermarked/hd1452_preview.webm';
           match.localText = match.text.charAt(0).toUpperCase() + match.text.slice(1);
           tempMatches.push(match);
         } else {
@@ -68,7 +67,6 @@ export class AppComponent implements AfterViewInit {
           });
           if (bestMatch[0]) {
             bestMatch[0].localSrc = '/assets/videos/' + bestMatch[0].src.split('/')[4] + '/' + bestMatch[0].src.split('/')[5];
-            bestMatch[0].localSrc = 'https://cdn.videvo.net/videvo_files/video/free/2012-09/small_watermarked/hd1452_preview.webm';
             bestMatch[0].localText = bestMatch[0].text.charAt(0).toUpperCase() + bestMatch[0].text.slice(1) + '*';
             tempMatches.push(bestMatch[0]);
           }
