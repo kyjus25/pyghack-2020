@@ -1,9 +1,9 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import * as wordsImport from  '../assets/data.json';
-import * as blacklistImport from  '../assets/blacklist.json';
-import * as mapImport from  '../assets/map.json';
+import * as wordsImport from '../assets/data.json';
+import * as blacklistImport from '../assets/blacklist.json';
+import * as mapImport from '../assets/map.json';
 import nlp from 'compromise';
-import {CarouselComponent} from './carousel/carousel.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @Component({
   selector: 'app-root',
@@ -24,13 +24,20 @@ export class AppComponent implements AfterViewInit {
   public ngAfterViewInit() {
     console.log(this);
   }
+  public onKeyDown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.submit();
+    }
+  }
   public submit(): void {
     this.activeIndex = 0;
     this.matches = [];
 
     const doc = nlp(this.sentence);
     doc.verbs().toInfinitive();
-    const newSentence = doc.text();
+    const newSentence = doc.text().trim();
+    if (!newSentence) return;
     const parts = newSentence.split(' ');
 
     const tempMatches = [];
@@ -50,6 +57,7 @@ export class AppComponent implements AfterViewInit {
         console.log(word, firstLetter, match);
         if (match) {
           match.localSrc = '/assets/videos/' + match.src.split('/')[4] + '/' + match.src.split('/')[5];
+          match.localSrc = 'https://cdn.videvo.net/videvo_files/video/free/2012-09/small_watermarked/hd1452_preview.webm';
           match.localText = match.text.charAt(0).toUpperCase() + match.text.slice(1);
           tempMatches.push(match);
         } else {
@@ -60,6 +68,7 @@ export class AppComponent implements AfterViewInit {
           });
           if (bestMatch[0]) {
             bestMatch[0].localSrc = '/assets/videos/' + bestMatch[0].src.split('/')[4] + '/' + bestMatch[0].src.split('/')[5];
+            bestMatch[0].localSrc = 'https://cdn.videvo.net/videvo_files/video/free/2012-09/small_watermarked/hd1452_preview.webm';
             bestMatch[0].localText = bestMatch[0].text.charAt(0).toUpperCase() + bestMatch[0].text.slice(1) + '*';
             tempMatches.push(bestMatch[0]);
           }
@@ -76,7 +85,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   private playVideo(index): void {
-    if (index <= this.matches.length) {
+    if (index < this.matches.length) {
       this.activeIndex = index;
       const videos: any = document.getElementsByClassName('video');
       if (videos) {
